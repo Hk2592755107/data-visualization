@@ -1,0 +1,14 @@
+<!-- templates/toast.html -->
+<div class="toast align-items-center text-white bg-{{ toast_type|default('success') }} border-0"
+     id="{{ toast_id|default('toast') }}"
+     role="alert"
+     aria-live="assertive"
+     aria-atomic="true"
+     style="position: fixed; top: 24px; right: 24px; min-width: 220px; z-index: 2000; display: none;">
+  <div class="d-flex">
+    <div class="toast-body" id="{{ toast_id|default('toast') }}Body">
+      {{ toast_message|default('Action successful!') }}
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+  </div>
+</div>

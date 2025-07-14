@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% include '/navbar.html' %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sale #{{ sale.id }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+      body {
+        background: linear-gradient(135deg, #5c868d 0%, #f5f7fa 70%, #fff 100%);
+        min-height: 100vh;
+      }
+      .container, .modal-content {
+        background: #fff !important;
+        border-radius: 1.1rem !important;
+        box-shadow: 0 4px 32px 0 rgba(2,136,209,.07);
+      }
+      .card { border-radius: 16px; box-shadow: 0 2px 16px 0 rgba(0,0,0,.05); }
+      th { background: #e3f2fd; color: #0288d1; }
+      .table { border-radius: 10px; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card p-4 my-4">
+      <h2 class="mb-3 text-primary">Sale #{{ sale.id }}</h2>
+      <p><strong>Date:</strong> {{ sale.date }}</p>
+      <p><strong>Total:</strong> <span class="text-success fw-bold">{{ sale.total_amount }}</span></p>
+      <hr>
+      <h4 class="mt-4 mb-2 text-secondary">Customer Info</h4>
+      <ul class="list-group list-group-flush mb-4">
+        <li class="list-group-item"><strong>Name:</strong> {{ sale.customer_name }}</li>
+        <li class="list-group-item"><strong>Phone:</strong> {{ sale.contact_number }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ sale.email }}</li>
+      </ul>
+      <h4 class="mb-2 text-secondary">Sold Items</h4>
+      <div class="table-responsive">
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th>Medicine</th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Discount (%)</th>
+              <th>Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in sale["items"] %}
+            <tr>
+              <td>{{ item.medicine_name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.unit_price }}</td>
+              <td>{{ item.discount }}</td>
+              <td>{{ item.total_price }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-4">
+        <a href="/sales_history" class="btn btn-primary">
+          <i class="fa fa-arrow-left me-1"></i> Back to Sales History
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
