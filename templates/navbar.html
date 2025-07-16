@@ -19,3 +19,183 @@
     </div>
   </div>
 </nav>
+
+<script>
+// SESSION ID TRACKING
+function getUserSession() {
+    let sid = localStorage.getItem("session_id");
+    if (!sid) {
+        sid = Math.random().toString(36).substr(2, 9);
+        localStorage.setItem("session_id", sid);
+    }
+    return sid;
+}
+
+function logEvent(eventType, eventDetails) {
+    fetch("/log_event", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            session: getUserSession(),
+            type: eventType,
+            details: eventDetails,
+            timestamp: new Date().toISOString()
+        })
+    });
+}
+
+// DEVICE INFO (on first page view)
+function logDeviceInfo() {
+    logEvent("device_info", {
+        user_agent: navigator.userAgent,
+        screen_width: window.screen.width,
+        screen_height: window.screen.height,
+        referrer: document.referrer,
+        language: navigator.language
+    });
+}
+
+// PAGE VIEW AND EXIT WITH DURATION
+let pageEnterTime = null;
+document.addEventListener("DOMContentLoaded", function() {
+    pageEnterTime = Date.now();
+    logDeviceInfo();
+    logEvent("page_view", {path: window.location.pathname, referrer: document.referrer});
+});
+window.addEventListener("beforeunload", function() {
+    if (pageEnterTime) {
+        const durationMs = Date.now() - pageEnterTime;
+        logEvent("page_exit", {
+            path: window.location.pathname,
+            duration_ms: durationMs
+        });
+    }
+});
+
+// SCROLL DEPTH
+let maxScroll = 0;
+window.addEventListener("scroll", function() {
+    const scrollDepth = Math.round(100 * window.scrollY / (document.body.scrollHeight - window.innerHeight));
+    if (scrollDepth > maxScroll) {
+        maxScroll = scrollDepth;
+        logEvent("scroll_depth", {
+            path: window.location.pathname,
+            percent: maxScroll
+        });
+    }
+});
+
+// MOUSE HOVER EVENTS
+document.addEventListener("mouseover", function(e) {
+    if (e.target.matches("button, a, input, select, .modal")) {
+        logEvent("mouse_hover", {
+            tag: e.target.tagName,
+            id: e.target.id,
+            class: e.target.className,
+            text: e.target.innerText || e.target.value,
+            path: window.location.pathname
+        });
+    }
+});
+
+// FORM INTERACTIONS
+document.addEventListener("focusin", function(e) {
+    if (e.target.form) {
+        logEvent("form_focus", {
+            name: e.target.name,
+            id: e.target.id,
+            path: window.location.pathname
+        });
+    }
+});
+document.addEventListener("change", function(e) {
+    if (e.target.form) {
+        logEvent("form_change", {
+            name: e.target.name,
+            id: e.target.id,
+            value: e.target.value,
+            path: window.location.pathname
+        });
+    }
+});
+document.addEventListener("blur", function(e) {
+    if (e.target.form) {
+        logEvent("form_blur", {
+            name: e.target.name,
+            id: e.target.id,
+            path: window.location.pathname
+        });
+    }
+});
+
+// BUTTON CLICKS
+document.addEventListener("click", function(e) {
+    if (e.target.matches("button, input[type=submit]")) {
+        logEvent("button_click", {
+            button_text: e.target.innerText || e.target.value,
+            id: e.target.id,
+            name: e.target.name,
+            path: window.location.pathname
+        });
+    }
+});
+
+// COPY/PASTE
+document.addEventListener("copy", function(e) {
+    logEvent("copy", {path: window.location.pathname});
+});
+document.addEventListener("paste", function(e) {
+    logEvent("paste", {path: window.location.pathname});
+});
+
+// IDLE TIME DETECTION (1 minute inactivity)
+let idleTimeout, idleStart = null;
+function resetIdleTimer() {
+    if (idleTimeout) clearTimeout(idleTimeout);
+    if (idleStart) {
+        const idleDuration = Date.now() - idleStart;
+        if (idleDuration > 60000) {
+            logEvent("idle", {duration_ms: idleDuration, path: window.location.pathname});
+        }
+        idleStart = null;
+    }
+    idleTimeout = setTimeout(function() {
+        idleStart = Date.now();
+    }, 60000); // 1 minute idle trigger
+}
+["mousemove", "keydown", "scroll", "click"].forEach(evt => {
+    document.addEventListener(evt, resetIdleTimer, true);
+});
+resetIdleTimer();
+
+// JS ERROR LOGGING
+window.addEventListener("error", function(e) {
+    logEvent("js_error", {
+        message: e.message,
+        source: e.filename,
+        line: e.lineno,
+        col: e.colno,
+        stack: e.error ? e.error.stack : null,
+        path: window.location.pathname
+    });
+});
+
+// MODAL OPEN/CLOSE (for Bootstrap 5)
+document.addEventListener("shown.bs.modal", function(e) {
+    logEvent("modal_open", {
+        modal_id: e.target.id,
+        path: window.location.pathname
+    });
+});
+document.addEventListener("hidden.bs.modal", function(e) {
+    logEvent("modal_close", {
+        modal_id: e.target.id,
+        path: window.location.pathname
+    });
+});
+
+// CUSTOM EVENTS (call window.logCustomEvent from anywhere)
+window.logCustomEvent = function(name, details={}) {
+    logEvent("custom_" + name, details);
+};
+</script>

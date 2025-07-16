@@ -1,0 +1,179 @@
+{"type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T16:21:29.075Z"}
+{"type": "button_click", "details": {"button_text": " Add Medicine", "id": "openAddModal", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:21:30.839Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:21:32.492Z"}
+{"type": "page_view", "details": {"path": "/suppliers"}, "timestamp": "2025-07-16T16:21:33.692Z"}
+{"type": "button_click", "details": {"button_text": " Add New Supplier", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T16:21:36.334Z"}
+{"type": "button_click", "details": {"button_text": "Add Supplier", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T16:21:50.011Z"}
+{"type": "page_view", "details": {"path": "/customers"}, "timestamp": "2025-07-16T16:21:52.254Z"}
+{"type": "button_click", "details": {"button_text": " Add Customer", "id": "", "name": "", "path": "/customers"}, "timestamp": "2025-07-16T16:21:53.447Z"}
+{"type": "button_click", "details": {"button_text": "Add Customer", "id": "", "name": "", "path": "/customers"}, "timestamp": "2025-07-16T16:21:59.387Z"}
+{"type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T16:22:01.456Z"}
+{"type": "button_click", "details": {"button_text": " Sell Medicine", "id": "openSellModal", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:22:04.944Z"}
+{"type": "button_click", "details": {"button_text": " Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:22:12.253Z"}
+{"type": "button_click", "details": {"button_text": " Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:22:15.893Z"}
+{"type": "button_click", "details": {"button_text": "Complete Sale", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:22:19.251Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:22:20.915Z"}
+{"type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T16:23:42.863Z"}
+{"type": "page_view", "details": {"path": "/suppliers"}, "timestamp": "2025-07-16T16:23:45.331Z"}
+{"type": "button_click", "details": {"button_text": " Add New Supplier", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T16:23:46.183Z"}
+{"type": "button_click", "details": {"button_text": "Add Supplier", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T16:24:01.067Z"}
+{"type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T16:24:03.220Z"}
+{"type": "button_click", "details": {"button_text": " Sell Medicine", "id": "openSellModal", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:24:04.081Z"}
+{"type": "button_click", "details": {"button_text": " Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:24:11.388Z"}
+{"type": "button_click", "details": {"button_text": "Complete Sale", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:24:18.203Z"}
+{"type": "button_click", "details": {"button_text": "Complete Sale", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:24:26.603Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T16:24:27.804Z"}
+{"type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:08:19.113Z"}
+{"type": "page_view", "details": {"path": "/sales_history"}, "timestamp": "2025-07-16T17:08:23.729Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/sales_history"}, "timestamp": "2025-07-16T17:08:26.839Z"}
+{"type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:08:31.794Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:08:36.342Z"}
+{"type": "page_view", "details": {"path": "/suppliers"}, "timestamp": "2025-07-16T17:08:37.964Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:08:39.807Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:08:42.671Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:08:44.447Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:08:46.590Z"}
+{"type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:08:50.870Z"}
+{"type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:08:54.863Z"}
+{"type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:08:57.886Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:11:04.635Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/suppliers"}, "timestamp": "2025-07-16T17:11:09.322Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add New Supplier", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:11:10.249Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Add Supplier", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:11:17.174Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:11:19.954Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Medicine", "id": "openAddModal", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:11:21.256Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "+ Add Category", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:11:28.759Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:11:53.405Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/customers"}, "timestamp": "2025-07-16T17:12:04.291Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Customer", "id": "", "name": "", "path": "/customers"}, "timestamp": "2025-07-16T17:12:07.377Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Add Customer", "id": "", "name": "", "path": "/customers"}, "timestamp": "2025-07-16T17:12:17.598Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:12:18.905Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Sell Medicine", "id": "openSellModal", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:19.722Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:28.056Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:32.112Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:35.415Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:39.703Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:46.615Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Complete Sale", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:51.654Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "\n            \n          ", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:54.414Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Complete Sale", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:55.550Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:57.334Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:12:59.198Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/sales_history"}, "timestamp": "2025-07-16T17:12:59.978Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/sale/5"}, "timestamp": "2025-07-16T17:13:01.631Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/sales_history"}, "timestamp": "2025-07-16T17:13:05.943Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:13:07.177Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:14:58.535Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Update Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:15:09.533Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Update Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:15:26.237Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:15:30.118Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Update Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:15:38.749Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Update Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:15:47.085Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:27:00.046Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/medicines", "duration_ms": 2423}, "timestamp": "2025-07-16T17:27:02.469Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/suppliers"}, "timestamp": "2025-07-16T17:27:02.589Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add New Supplier", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:27:03.608Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Add Supplier", "id": "", "name": "", "path": "/suppliers"}, "timestamp": "2025-07-16T17:27:22.052Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/suppliers", "duration_ms": 22416}, "timestamp": "2025-07-16T17:27:25.004Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:27:25.113Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Medicine", "id": "openAddModal", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:27:26.424Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Add Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:28:05.300Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/medicines", "duration_ms": 42563}, "timestamp": "2025-07-16T17:28:07.676Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/customers"}, "timestamp": "2025-07-16T17:28:07.829Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Add Customer", "id": "", "name": "", "path": "/customers"}, "timestamp": "2025-07-16T17:28:08.943Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Add Customer", "id": "", "name": "", "path": "/customers"}, "timestamp": "2025-07-16T17:28:32.940Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/customers", "duration_ms": 29359}, "timestamp": "2025-07-16T17:28:37.188Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:28:37.353Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Sell Medicine", "id": "openSellModal", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:28:38.210Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Complete Sale", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:29:00.836Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T17:29:02.997Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/medicines", "duration_ms": 26858}, "timestamp": "2025-07-16T17:29:04.211Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/sales_history"}, "timestamp": "2025-07-16T17:29:04.347Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/sales_history", "duration_ms": 2305}, "timestamp": "2025-07-16T17:29:06.652Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/sale/6"}, "timestamp": "2025-07-16T17:29:06.749Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/sale/6", "duration_ms": 2376}, "timestamp": "2025-07-16T17:29:09.124Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/sales_history"}, "timestamp": "2025-07-16T17:29:09.245Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/sales_history", "duration_ms": 3919}, "timestamp": "2025-07-16T17:29:13.164Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines"}, "timestamp": "2025-07-16T17:29:13.273Z"}
+{"session": "00glteqwd", "type": "device_info", "details": {"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36", "screen_width": 1920, "screen_height": 1080, "referrer": "", "language": "en-GB"}, "timestamp": "2025-07-16T18:10:25.462Z"}
+{"session": "00glteqwd", "type": "page_view", "details": {"path": "/medicines", "referrer": ""}, "timestamp": "2025-07-16T18:10:25.463Z"}
+{"session": "00glteqwd", "type": "page_exit", "details": {"path": "/medicines", "duration_ms": 2473742}, "timestamp": "2025-07-16T18:10:27.015Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-sm btn-danger delete-btn", "text": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:29.520Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-sm btn-danger delete-btn", "text": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:29.767Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-sm btn-primary edit-btn", "text": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:30.285Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-sm btn-primary edit-btn", "text": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:30.484Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "edit-category", "class": "form-select mb-2", "text": "-- Select Category --\nDolores et tempore\nLaborum totam sed iu", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:31.034Z"}
+{"session": "00glteqwd", "type": "modal_open", "details": {"modal_id": "editModal", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:31.318Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-brand", "class": "form-control mb-2", "text": "sahhh", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:31.600Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "brand", "id": "edit-brand", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:31.886Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-quantity", "class": "form-control mb-2", "text": "100000", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:34.185Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-quantity", "class": "form-control mb-2", "text": "100000", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:34.394Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-quantity", "class": "form-control mb-2", "text": "100000", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:34.600Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-price", "class": "form-control mb-2", "text": "54.00", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:34.667Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-quantity", "class": "form-control mb-2", "text": "100000", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:34.817Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "brand", "id": "edit-brand", "value": "sah", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:35.224Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-quantity", "class": "form-control mb-2", "text": "100000", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:35.419Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-price", "class": "form-control mb-2", "text": "54.00", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:35.451Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2027-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:35.517Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "edit-supplier", "class": "form-select mb-2", "text": "William\nHasant", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:35.584Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-primary", "text": "Update Medicine", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:35.733Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "", "id": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:36.174Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Update Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:36.248Z"}
+{"session": "00glteqwd", "type": "modal_close", "details": {"modal_id": "editModal", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:36.591Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-sm btn-primary edit-btn", "text": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:37.450Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:37.785Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "DIV", "id": "editModal", "class": "modal fade show", "text": "Edit Medicine\nName:\nBrand:\nCategory:\n-- Select Category --\nDolores et tempore\nLaborum totam sed iu\nQuantity:\nPrice:\nExpiry Date:\nSupplier:\nWilliam\nHasant\nUpdate Medicine", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:37.983Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "edit-category", "class": "form-select mb-2", "text": "-- Select Category --\nDolores et tempore\nLaborum totam sed iu", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:38.233Z"}
+{"session": "00glteqwd", "type": "modal_open", "details": {"modal_id": "editModal", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:38.284Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "category", "id": "edit-category", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:38.629Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "category", "id": "edit-category", "value": "2", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:39.207Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-quantity", "class": "form-control mb-2", "text": "100000", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:39.219Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-price", "class": "form-control mb-2", "text": "54.00", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:39.383Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2027-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:39.449Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "edit-supplier", "class": "form-select mb-2", "text": "William\nHasant", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:39.550Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2027-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:39.801Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-price", "class": "form-control mb-2", "text": "54.00", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:39.850Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-quantity", "class": "form-control mb-2", "text": "100000", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:40.066Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "quantity", "id": "edit-quantity", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:40.237Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-price", "class": "form-control mb-2", "text": "54.00", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:40.650Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2027-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:40.733Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "edit-supplier", "class": "form-select mb-2", "text": "William\nHasant", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:40.800Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-primary", "text": "Update Medicine", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:41.096Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "edit-supplier", "class": "form-select mb-2", "text": "William\nHasant", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:41.266Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2027-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:41.333Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-price", "class": "form-control mb-2", "text": "54.00", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:41.633Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "quantity", "id": "edit-quantity", "value": "1000", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:41.771Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "price", "id": "edit-price", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:41.774Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2027-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:44.166Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2027-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:44.433Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2027-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:44.833Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "price", "id": "edit-price", "value": "59", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:45.467Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "expiry_date", "id": "edit-expiry", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:45.470Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "expiry_date", "id": "edit-expiry", "value": "0002-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:48.392Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "expiry_date", "id": "edit-expiry", "value": "0020-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:48.576Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "expiry_date", "id": "edit-expiry", "value": "0202-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:48.703Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "expiry_date", "id": "edit-expiry", "value": "2028-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:49.183Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "edit-expiry", "class": "form-control mb-2", "text": "2028-07-31", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:50.265Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "edit-supplier", "class": "form-select mb-2", "text": "William\nHasant", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:50.415Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "supplier_id", "id": "edit-supplier", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:50.614Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "supplier_id", "id": "edit-supplier", "value": "9", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:51.432Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-primary", "text": "Update Medicine", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:51.765Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "", "id": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:52.053Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": "Update Medicine", "id": "", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:52.103Z"}
+{"session": "00glteqwd", "type": "modal_close", "details": {"modal_id": "editModal", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:52.432Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "A", "id": "", "class": "page-link", "text": "1", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:54.515Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-sm btn-danger delete-btn", "text": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:55.016Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "openSellModal", "class": "btn btn-info text-white", "text": " Sell Medicine", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:57.814Z"}
+{"session": "00glteqwd", "type": "button_click", "details": {"button_text": " Sell Medicine", "id": "openSellModal", "name": "", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:58.026Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "customer_id", "class": "form-select", "text": "-- Select Customer --\ndsgfd\nImani Garza\nNeelaish\nNeelaish\nAshtar", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:58.399Z"}
+{"session": "00glteqwd", "type": "modal_open", "details": {"modal_id": "sellModal", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:58.499Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "", "id": "customer_id", "path": "/medicines"}, "timestamp": "2025-07-16T18:10:59.085Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "", "id": "customer_id", "value": "7", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:00.895Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "SELECT", "id": "medicine_id", "class": "form-select", "text": "-- Select --\nCetirizine (Stock: 1000)", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:01.148Z"}
+{"session": "00glteqwd", "type": "form_focus", "details": {"name": "medicine_id", "id": "medicine_id", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:01.341Z"}
+{"session": "00glteqwd", "type": "form_change", "details": {"name": "medicine_id", "id": "medicine_id", "value": "5", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:02.488Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "BUTTON", "id": "", "class": "btn btn-primary mb-2", "text": " Add Medicine", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:02.499Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "INPUT", "id": "", "class": "form-control", "text": "59.00", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:03.664Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "DIV", "id": "sellModal", "class": "modal fade show", "text": "Sell Medicine\nSelect Customer:\n-- Select Customer --\ndsgfd\nImani Garza\nNeelaish\nNeelaish\nAshtar\nMedicine\tUnit Price\tQty\tAmount\tDiscount %\tTotal\tAction\n\n-- Select --\nCetirizine (Stock: 1000)\n\t\n\t\n\t\n\t\n\t\n\t\n Add Medicine\n\nGrand Total: 0.00\n\nComplete Sale", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:10.446Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "DIV", "id": "sellModal", "class": "modal fade show", "text": "Sell Medicine\nSelect Customer:\n-- Select Customer --\ndsgfd\nImani Garza\nNeelaish\nNeelaish\nAshtar\nMedicine\tUnit Price\tQty\tAmount\tDiscount %\tTotal\tAction\n\n-- Select --\nCetirizine (Stock: 1000)\n\t\n\t\n\t\n\t\n\t\n\t\n Add Medicine\n\nGrand Total: 0.00\n\nComplete Sale", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:12.075Z"}
+{"session": "00glteqwd", "type": "mouse_hover", "details": {"tag": "DIV", "id": "sellModal", "class": "modal fade show", "text": "Sell Medicine\nSelect Customer:\n-- Select Customer --\ndsgfd\nImani Garza\nNeelaish\nNeelaish\nAshtar\nMedicine\tUnit Price\tQty\tAmount\tDiscount %\tTotal\tAction\n\n-- Select --\nCetirizine (Stock: 1000)\n\t\n\t\n\t\n\t\n\t\n\t\n Add Medicine\n\nGrand Total: 0.00\n\nComplete Sale", "path": "/medicines"}, "timestamp": "2025-07-16T18:11:12.162Z"}

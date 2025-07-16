@@ -467,37 +467,6 @@ def delete_medicine(medicine_id):
         traceback.print_exc()
         return jsonify({"error": "Failed to delete medicine"}), 500
 
-
-# @medicines_bp.route('/sell_medicine')
-# def sell_medicine():
-#     try:
-#         db = get_db_connection()
-#         cursor = db.cursor()
-#         cursor.execute("""
-#             SELECT m.id, m.name, m.quantity, m.price, c.name AS category
-#             FROM medicines m
-#             LEFT JOIN categories c ON m.category_id = c.id
-#             WHERE m.quantity > 0
-#         """)
-#         medicines = cursor.fetchall()
-#         cursor.execute("SELECT id, name FROM customers")
-#         customers = cursor.fetchall()
-#         cursor.execute("SELECT id, name FROM categories")
-#         categories = cursor.fetchall()
-#         cursor.close()
-#         db.close()
-#         return render_template(
-#             medicines=medicines,
-#             customers=customers,
-#             categories=categories
-#         )
-#     except Exception as e:
-#         print("Error loading sell medicine page:", e)
-#         traceback.print_exc()
-#         return "Database error", 500
-
-
-
 @medicines_bp.route("/sell_medicine", methods=["POST"])
 def process_sale():
     try:
