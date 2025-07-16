@@ -5,8 +5,19 @@ from datetime import datetime
 
 suppliers_bp = Blueprint('suppliers_bp', __name__)
 
-def is_valid_contact(contact_number):
-    return contact_number.isdigit() and 7 <= len(contact_number) <= 15
+def is_valid_name(name):
+    # Only letters and spaces, must start and end with a letter, at least two characters, no double spaces
+    pattern = r"^[A-Za-z]+(?: [A-Za-z]+)*$"
+    return bool(re.match(pattern, name.strip()))
+
+def is_valid_contact(phone):
+    phone = phone.strip()
+    # Check length limits (min 7, max 20)
+    if len(phone) < 7 or len(phone) > 20:
+        return False
+    # Pattern check
+    pattern = r"^\+?\d{1,3}?[-\s]?\d{3,4}[-\s]?\d{6,7}$"
+    return bool(re.match(pattern, phone))
 
 def is_valid_email(email):
     if not email:
@@ -36,18 +47,28 @@ def suppliers():
         city = request.form.get("city", "").strip()
 
         # --- Validation ---
+        
         if not name:
             cursor.close(); db.close()
             return jsonify({"error": "Supplier name is required."}), 400
+        if not is_valid_name(name):
+            cursor.close(); db.close()
+            return jsonify({"error": ( "Supplier must only contain letters, spaces. It must start and end with a letter, and not contain special characters like hyphens.")}), 400
         if not contact_number:
             cursor.close(); db.close()
             return jsonify({"error": "Contact number is required."}), 400
+        if not contact_number:
+            return jsonify({"error": "Contact number is required."}), 400
+        if len(contact_number) < 7 or len(contact_number) > 20:
+            return jsonify({"error": "Contact number must be between 7 and 20 characters."}), 400
         if not is_valid_contact(contact_number):
-            cursor.close(); db.close()
-            return jsonify({"error": "Contact number must be 7-15 digits."}), 400
+            return jsonify({"error": "Contact number must be a valid number (e.g. +92-333-34324355)."}), 400
         if email and not is_valid_email(email):
             cursor.close(); db.close()
             return jsonify({"error": "Invalid email address."}), 400
+        if not is_valid_name(city):
+            cursor.close(); db.close()
+            return jsonify({"error": ( "City must only contain letters, spaces. It must start and end with a letter, and not contain special characters like hyphens.")}), 400
 
         cursor.execute("SELECT id FROM suppliers WHERE name = %s AND contact_number = %s", (name, contact_number))
         if cursor.fetchone():
@@ -111,43 +132,70 @@ def get_supplier(supplier_id):
 @suppliers_bp.route("/update_supplier", methods=["POST"])
 def update_supplier():
     try:
-        id = request.form.get("id")
+        id = request.form.get("id", "").strip()
         name = request.form.get("name", "").strip()
         contact_number = request.form.get("contact_number", "").strip()
         email = request.form.get("email", "").strip()
         city = request.form.get("city", "").strip()
 
         # --- Validation ---
+        if not id or not id.isdigit():
+            return jsonify({"error": "Supplier ID is required."}), 400
         if not name:
             return jsonify({"error": "Supplier name is required."}), 400
         if not contact_number:
             return jsonify({"error": "Contact number is required."}), 400
+        if len(contact_number) < 7 or len(contact_number) > 20:
+            return jsonify({"error": "Contact number must be between 7 and 20 characters."}), 400
         if not is_valid_contact(contact_number):
-            return jsonify({"error": "Contact number must be 7-15 digits."}), 400
-        if email and not is_valid_email(email):
+            return jsonify({"error": "Contact number must be a valid number (e.g. +92-333-34324355)."}), 400
+        if not email:
+            return jsonify({"error": "Email is required."}), 400
+        if not is_valid_email(email):
             return jsonify({"error": "Invalid email address."}), 400
+        if not city:
+            return jsonify({"error": "City is required."}), 400
+
 
         db = get_db_connection()
         cursor = db.cursor()
-        cursor.execute("SELECT id FROM suppliers WHERE name=%s AND contact_number=%s AND id != %s", (name, contact_number, id))
+        # Check for duplicate supplier
+        cursor.execute(
+            "SELECT id FROM suppliers WHERE name=%s AND contact_number=%s AND id != %s", 
+            (name, contact_number, id)
+        )
         if cursor.fetchone():
             cursor.close(); db.close()
             return jsonify({"error": "Another supplier with this name and contact already exists."}), 409
 
+        # Check if supplier exists before updating
+        cursor.execute("SELECT id FROM suppliers WHERE id=%s", (id,))
+        if not cursor.fetchone():
+            cursor.close(); db.close()
+            return jsonify({"error": "Supplier not found."}), 404
+
+        # Do update
         cursor.execute("""
             UPDATE suppliers
             SET name=%s, contact_number=%s, email=%s, city=%s
             WHERE id=%s
         """, (name, contact_number, email, city, id))
         db.commit()
+
         cursor.execute("SELECT * FROM suppliers WHERE id=%s", (id,))
         supplier = cursor.fetchone()
         cursor.close(); db.close()
+
         if supplier:
             supplier["created_at"] = format_dt(supplier["created_at"])
-        return jsonify({"supplier": supplier})
+            return jsonify({"supplier": supplier})
+        else:
+            return jsonify({"error": "Could not retrieve updated supplier."}), 404
+
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        print("Error updating supplier:", e)
+        return jsonify({"error": "Failed to update supplier due to a server error."}), 500
+
 
 # ---------- DELETE SUPPLIER ----------
 @suppliers_bp.route("/delete_supplier/<int:supplier_id>", methods=["POST"])

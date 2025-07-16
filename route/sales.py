@@ -51,6 +51,27 @@ def sale_details(sale_id):
         traceback.print_exc()
         return "Error loading sale details", 500
 
+@sales_bp.route('/delete_sale/<int:sale_id>', methods=['POST'])
+def delete_sale(sale_id):
+    try:
+        db = get_db_connection()
+        cursor = db.cursor()
+
+        # First delete items associated with the sale
+        cursor.execute("DELETE FROM sales_item WHERE sale_id = %s", (sale_id,))
+        # Then delete the sale itself
+        cursor.execute("DELETE FROM sales WHERE id = %s", (sale_id,))
+
+        db.commit()
+        cursor.close()
+        db.close()
+        return jsonify({"message": "Sale deleted successfully."}), 200
+    except Exception as e:
+        print("Error deleting sale:", e)
+        traceback.print_exc()
+        return jsonify({"error": "Failed to delete sale."}), 500
+
+
 @sales_bp.route("/sales_history")
 def sales_history():
     try:

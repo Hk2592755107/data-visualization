@@ -295,6 +295,8 @@
     <button class="btn btn-sm btn-danger delete-btn" data-id="${data.supplier.id}"><i class="fa-solid fa-trash"></i></button>`,
                   ])
                   .draw(false);
+                  const addedRowNode = table.row(':last').node();
+                  $(addedRowNode).attr('data-id', data.supplier.id);
 
                 showToast(data.message || "Supplier added!");
                 bootstrap.Modal.getInstance(
@@ -319,6 +321,7 @@
 
         // Open Supplier Modal
         window.openSupplierModal = function () {
+          document.getElementById("supplierForm").reset(); // Reset form fields
           new bootstrap.Modal(document.getElementById("supplierModal")).show();
         };
 

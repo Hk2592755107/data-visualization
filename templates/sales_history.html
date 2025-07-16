@@ -1,184 +1,166 @@
 <!DOCTYPE html>
 {% include '/navbar.html' %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sales History</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- DataTables Bootstrap 5 CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      crossorigin="anonymous"
-    />
-    <style>
-      body {
-        background: linear-gradient(135deg, #5c868d 0%, #f5f7fa 70%, #fff 100%);
-        min-height: 100vh;
-      }
-      .container,
-      .modal-content {
-        background: #fff !important;
-        border-radius: 1.1rem !important;
-        box-shadow: 0 4px 32px 0 rgba(2, 136, 209, 0.07);
-      }
-      .nav-link.active,
-      .btn-primary {
-        background-color: #0288d1 !important;
-        border: none !important;
-      }
-      .btn-success {
-        background-color: #28a745 !important;
-        border: none;
-      }
-      .btn-danger {
-        background-color: #dc3545 !important;
-        border: none;
-      }
-      .btn-dark {
-        background-color: #343a40 !important;
-        border: none;
-      }
-      .btn-info {
-        background-color: #17a2b8 !important;
-        border: none;
-      }
-      .btn-secondary {
-        background-color: #6c757d !important;
-        border: none;
-      }
-      .toast {
-        position: fixed;
-        top: 24px;
-        right: 24px;
-        min-width: 220px;
-        z-index: 2000;
-      }
-      .table thead {
-        background: #e3f2fd;
-        color: #0288d1;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container bg-white p-4 rounded shadow-sm">
-      <h1 class="mb-4 text-primary text-center">Sales History</h1>
-      <div class="table-responsive">
-        <table
-          id="salesTable"
-          class="table table-striped table-hover align-middle"
-        >
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Customer</th>
-              <th>Date</th>
-              <th>Total Amount</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for sale in sales %}
-            <tr>
-              <td>{{ sale.id }}</td>
-              <td>{{ sale.customer_name }}</td>
-              <td>{{ sale.date }}</td>
-              <td>{{ "%.2f"|format(sale.total_amount) }}</td>
-              <td>
-                <a
-                  class="btn btn-sm btn-success"
-                  title="View"
-                  href="/sale/{{ sale.id }}"
-                >
-                  <i class="fa-solid fa-eye"></i>
-                </a>
-                <button
-                  class="btn btn-sm btn-danger delete-sale"
-                  data-id="{{ sale.id }}"
-                  title="Delete"
-                >
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      <a href="/medicines" class="btn btn-secondary mt-4"
-        ><i class="fa fa-arrow-left me-1"></i> Back to Inventory</a
-      >
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Sales History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- DataTables Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    crossorigin="anonymous" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #5c868d 0%, #f5f7fa 70%, #fff 100%);
+      min-height: 100vh;
+    }
+
+    .container,
+    .modal-content {
+      background: #fff !important;
+      border-radius: 1.1rem !important;
+      box-shadow: 0 4px 32px 0 rgba(2, 136, 209, 0.07);
+    }
+
+    .nav-link.active,
+    .btn-primary {
+      background-color: #0288d1 !important;
+      border: none !important;
+    }
+
+    .btn-success {
+      background-color: #28a745 !important;
+      border: none;
+    }
+
+    .btn-danger {
+      background-color: #dc3545 !important;
+      border: none;
+    }
+
+    .btn-dark {
+      background-color: #343a40 !important;
+      border: none;
+    }
+
+    .btn-info {
+      background-color: #17a2b8 !important;
+      border: none;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d !important;
+      border: none;
+    }
+
+    .toast {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      min-width: 220px;
+      z-index: 2000;
+    }
+
+    .table thead {
+      background: #e3f2fd;
+      color: #0288d1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container bg-white p-4 rounded shadow-sm">
+    <h1 class="mb-4 text-primary text-center">Sales History</h1>
+    <div class="table-responsive">
+      <table id="salesTable" class="table table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Total Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for sale in sales %}
+          <tr>
+            <td>{{ sale.id }}</td>
+            <td>{{ sale.customer_name }}</td>
+            <td>{{ sale.date }}</td>
+            <td>{{ "%.2f"|format(sale.total_amount) }}</td>
+            <td>
+              <a class="btn btn-sm btn-success" title="View" href="/sale/{{ sale.id }}">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+              <button class="btn btn-sm btn-danger delete-sale" data-id="{{ sale.id }}" title="Delete">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+    <a href="/medicines" class="btn btn-secondary mt-4"><i class="fa fa-arrow-left me-1"></i> Back to Inventory</a>
+  </div>
 
-    <!-- Bootstrap Toast -->
-    <div
-      class="toast align-items-center text-white bg-success border-0"
-      id="toast"
-      role="alert"
-    >
-      <div class="d-flex">
-        <div class="toast-body" id="toastBody">Sale deleted successfully!</div>
-        <button
-          type="button"
-          class="btn-close btn-close-white me-2 m-auto"
-          data-bs-dismiss="toast"
-        ></button>
-      </div>
+  <!-- Bootstrap Toast -->
+  <div class="toast align-items-center text-white bg-success border-0" id="toast" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastBody">Sale deleted successfully!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
     </div>
+  </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("#salesTable").DataTable({
-          language: {
-            emptyTable: "No sales found.",
-          },
-        });
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+$(document).ready(function () {
+  // Store the DataTable instance in a variable!
+  const dt = $("#salesTable").DataTable({
+    language: {
+      emptyTable: "No sales found.",
+    },
+  });
 
-        // Delete handler
-        $(".delete-sale").click(function () {
-          const saleId = $(this).data("id");
-          if (confirm("Are you sure you want to delete this sale?")) {
-            $.post(`/delete_sale/${saleId}`)
-              .done(() => {
-                showToast("Sale deleted successfully!");
-                setTimeout(() => location.reload(), 1000);
-              })
-              .fail(() => alert("Failed to delete sale."));
-          }
-        });
-
-        // If redirected with #sell, trigger the sell modal on /medicines page
-        if (
-          window.location.hash === "#sell" &&
-          window.location.pathname === "/medicines"
-        ) {
-          setTimeout(function () {
-            const sellBtn = document.getElementById("sellMedicineBtn");
-            if (sellBtn) sellBtn.click();
-          }, 400);
-        }
-      });
-
-      function showToast(message, duration = 3000) {
-        const toast = document.getElementById("toast");
-        document.getElementById("toastBody").textContent = message;
-        const bsToast = new bootstrap.Toast(toast, { delay: duration });
-        bsToast.show();
+  // Delete handler
+  $("#salesTable tbody").on("click", ".delete-sale", function () {
+    const row = $(this).closest("tr");
+    const saleId = $(this).data("id");
+    if (confirm("Are you sure you want to delete this sale?")) {
+      $.post(`/delete_sale/${saleId}`)
+        .done(() => {
+          dt.row(row).remove().draw(false); // Now dt is defined!
+          showToast("Sale deleted successfully!");
+        })
+        .fail(() => showToast("Failed to delete sale.", "danger"));
+    }
+  });
+      if (
+        window.location.hash === "#sell" &&
+        window.location.pathname === "/medicines"
+      ) {
+        setTimeout(function () {
+          const sellBtn = document.getElementById("sellMedicineBtn");
+          if (sellBtn) sellBtn.click();
+        }, 400);
       }
-    </script>
-  </body>
+    });
+
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toastBody").textContent = message;
+      const bsToast = new bootstrap.Toast(toast, { delay: duration });
+      bsToast.show();
+    }
+  </script>
+</body>
+
 </html>
