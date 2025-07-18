@@ -1,27 +1,56 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-3">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold text-primary" href="#">
-      <i class="fa-solid fa-capsules me-2"></i> Pharmacy App
-    </a>
-    <div>
-      <a href="/medicines" class="btn btn-primary me-2 mb-1">
-        <i class="fa fa-capsules me-1"></i> Medicines
-      </a>
-      <a href="/customers" class="btn btn-secondary me-2 mb-1">
-        <i class="fa fa-users me-1"></i> Customers
-      </a>
-      <a href="/suppliers" class="btn btn-info text-white me-2 mb-1">
-        <i class="fa fa-truck me-1"></i> Suppliers
-      </a>
-      <a href="/sales_history" class="btn btn-dark me-2 mb-1">
-        <i class="fa fa-history me-1"></i> Sales History
-      </a>
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-primary" href="#">
+            <i class="fa-solid fa-capsules me-2"></i> Pharmacy App
+        </a>
+        <div>
+            <a href="/medicines" class="btn btn-primary me-2 mb-1">
+                <i class="fa fa-capsules me-1"></i> Medicines
+            </a>
+            <a href="/customers" class="btn btn-secondary me-2 mb-1">
+                <i class="fa fa-users me-1"></i> Customers
+            </a>
+            <a href="/suppliers" class="btn btn-info text-white me-2 mb-1">
+                <i class="fa fa-truck me-1"></i> Suppliers
+            </a>
+            <a href="/sales_history" class="btn btn-dark me-2 mb-1">
+                <i class="fa fa-history me-1"></i> Sales History
+                <a href="/user_activity" class="btn btn-warning me-2 mb-1">
+                    <i class="fa fa-clipboard-list me-1"></i> User activity
+                </a>
+        </div>
     </div>
-  </div>
 </nav>
 
 <script>
-// SESSION ID TRACKING
+window.userIp = null;
+
+// Optionally fetch the public IP (used in eventDetails, but backend can get IP too)
+fetch('/get_my_ip')
+    .then(res => res.json())
+    .then(data => { window.userIp = data.ip; });
+
+// --------- DEVICE/BROWSER INFO ---------
+function getBrowserInfo() {
+    const ua = navigator.userAgent;
+    let browser = '-', version = '-', os = '-', deviceType = '-', deviceName = '-';
+    if (ua.indexOf("Chrome") > -1) { browser = "Chrome"; }
+    else if (ua.indexOf("Firefox") > -1) { browser = "Firefox"; }
+    else if (ua.indexOf("Safari") > -1 && ua.indexOf("Chrome") === -1) { browser = "Safari"; }
+    else if (ua.indexOf("Edge") > -1) { browser = "Edge"; }
+    else if (ua.indexOf("Opera") > -1 || ua.indexOf("OPR") > -1) { browser = "Opera"; }
+    else if (ua.indexOf("Trident") > -1) { browser = "IE"; }
+    version = (ua.match(/(Chrome|Firefox|Safari|Edge|OPR)\/(\d+(\.\d+)?)/) || [])[2] || '-';
+    if (/Android/.test(ua)) { os = 'Android'; deviceType = 'Mobile'; }
+    else if (/iPhone|iPad|iPod/.test(ua)) { os = 'iOS'; deviceType = 'Mobile'; }
+    else if (/Win/.test(ua)) { os = 'Windows'; deviceType = 'Desktop'; }
+    else if (/Mac/.test(ua)) { os = 'MacOS'; deviceType = 'Desktop'; }
+    else if (/Linux/.test(ua)) { os = 'Linux'; deviceType = 'Desktop'; }
+    deviceName = navigator.platform || '-';
+    return { browser, version, os, deviceType, deviceName };
+}
+
+// --------- SESSION ID ---------
 function getUserSession() {
     let sid = localStorage.getItem("session_id");
     if (!sid) {
@@ -31,10 +60,51 @@ function getUserSession() {
     return sid;
 }
 
+// --------- MAIN LOGGING FUNCTION ---------
 function logEvent(eventType, eventDetails) {
+    // Attach device and environment info to every event
+    const browserInfo = getBrowserInfo();
+    eventDetails.user_agent      = navigator.userAgent;
+    eventDetails.screen_width    = window.screen.width;
+    eventDetails.screen_height   = window.screen.height;
+    eventDetails.referrer        = document.referrer;
+    eventDetails.language        = navigator.language;
+    eventDetails.platform        = navigator.platform || '-';
+    eventDetails.cookies_enabled = navigator.cookieEnabled;
+    eventDetails.js_enabled      = true;
+    eventDetails.online_status   = navigator.onLine;
+    eventDetails.browser         = browserInfo.browser;
+    eventDetails.browser_version = browserInfo.version;
+    eventDetails.os              = browserInfo.os;
+    eventDetails.device_type     = browserInfo.deviceType;
+    eventDetails.device_name     = browserInfo.deviceName;
+    eventDetails.timezone        = Intl.DateTimeFormat().resolvedOptions().timeZone || '-';
+    eventDetails.history_length  = history.length || '-';
+
+    // Attach IP if fetched (optional, backend should add as fallback)
+    if (window.userIp) eventDetails.ip = window.userIp;
+
+    // Optional: Network & Battery info
+    if (navigator.connection) {
+        eventDetails.network_type     = navigator.connection.effectiveType || '-';
+        eventDetails.connection_speed = navigator.connection.downlink || '-';
+    }
+    // Battery is async, so defer send if available
+    if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+            eventDetails.battery_level   = battery.level;
+            eventDetails.battery_charging= battery.charging;
+            sendLog(eventType, eventDetails);
+        });
+        return;
+    }
+    sendLog(eventType, eventDetails);
+}
+
+function sendLog(eventType, eventDetails) {
     fetch("/log_event", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             session: getUserSession(),
             type: eventType,
@@ -44,49 +114,44 @@ function logEvent(eventType, eventDetails) {
     });
 }
 
-// DEVICE INFO (on first page view)
-function logDeviceInfo() {
-    logEvent("device_info", {
-        user_agent: navigator.userAgent,
-        screen_width: window.screen.width,
-        screen_height: window.screen.height,
-        referrer: document.referrer,
-        language: navigator.language
-    });
-}
-
-// PAGE VIEW AND EXIT WITH DURATION
+// --------- EXAMPLE EVENT LOGGING ---------
+// Track page entry/exit with duration
 let pageEnterTime = null;
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     pageEnterTime = Date.now();
-    logDeviceInfo();
-    logEvent("page_view", {path: window.location.pathname, referrer: document.referrer});
+    logEvent("page_view", { path: window.location.pathname, referrer: document.referrer });
 });
-window.addEventListener("beforeunload", function() {
+window.addEventListener("beforeunload", function () {
     if (pageEnterTime) {
-        const durationMs = Date.now() - pageEnterTime;
         logEvent("page_exit", {
             path: window.location.pathname,
-            duration_ms: durationMs
+            user_in_time: new Date(pageEnterTime).toISOString(),
+            user_out_time: new Date().toISOString(),
+            duration_ms: Date.now() - pageEnterTime
         });
     }
 });
 
-// SCROLL DEPTH
-let maxScroll = 0;
-window.addEventListener("scroll", function() {
-    const scrollDepth = Math.round(100 * window.scrollY / (document.body.scrollHeight - window.innerHeight));
-    if (scrollDepth > maxScroll) {
-        maxScroll = scrollDepth;
-        logEvent("scroll_depth", {
-            path: window.location.pathname,
-            percent: maxScroll
+// Example: log device info once per session (optional)
+// if (!localStorage.getItem("device_info_logged")) {
+//     logEvent("device_info", {});
+//     localStorage.setItem("device_info_logged", "1");
+// }
+
+// Track button clicks
+document.addEventListener("click", function (e) {
+    if (e.target.matches("button, input[type=submit]")) {
+        logEvent("button_click", {
+            button_text: e.target.innerText || e.target.value,
+            id: e.target.id,
+            name: e.target.name,
+            path: window.location.pathname
         });
     }
 });
 
-// MOUSE HOVER EVENTS
-document.addEventListener("mouseover", function(e) {
+// Mouse hover
+document.addEventListener("mouseover", function (e) {
     if (e.target.matches("button, a, input, select, .modal")) {
         logEvent("mouse_hover", {
             tag: e.target.tagName,
@@ -98,8 +163,8 @@ document.addEventListener("mouseover", function(e) {
     }
 });
 
-// FORM INTERACTIONS
-document.addEventListener("focusin", function(e) {
+// Form interactions
+document.addEventListener("focusin", function (e) {
     if (e.target.form) {
         logEvent("form_focus", {
             name: e.target.name,
@@ -108,7 +173,7 @@ document.addEventListener("focusin", function(e) {
         });
     }
 });
-document.addEventListener("change", function(e) {
+document.addEventListener("change", function (e) {
     if (e.target.form) {
         logEvent("form_change", {
             name: e.target.name,
@@ -118,7 +183,7 @@ document.addEventListener("change", function(e) {
         });
     }
 });
-document.addEventListener("blur", function(e) {
+document.addEventListener("blur", function (e) {
     if (e.target.form) {
         logEvent("form_blur", {
             name: e.target.name,
@@ -128,38 +193,26 @@ document.addEventListener("blur", function(e) {
     }
 });
 
-// BUTTON CLICKS
-document.addEventListener("click", function(e) {
-    if (e.target.matches("button, input[type=submit]")) {
-        logEvent("button_click", {
-            button_text: e.target.innerText || e.target.value,
-            id: e.target.id,
-            name: e.target.name,
-            path: window.location.pathname
-        });
-    }
+// Clipboard events
+document.addEventListener("copy", function (e) {
+    logEvent("copy", { path: window.location.pathname });
+});
+document.addEventListener("paste", function (e) {
+    logEvent("paste", { path: window.location.pathname });
 });
 
-// COPY/PASTE
-document.addEventListener("copy", function(e) {
-    logEvent("copy", {path: window.location.pathname});
-});
-document.addEventListener("paste", function(e) {
-    logEvent("paste", {path: window.location.pathname});
-});
-
-// IDLE TIME DETECTION (1 minute inactivity)
+// Idle time (user inactivity)
 let idleTimeout, idleStart = null;
 function resetIdleTimer() {
     if (idleTimeout) clearTimeout(idleTimeout);
     if (idleStart) {
         const idleDuration = Date.now() - idleStart;
         if (idleDuration > 60000) {
-            logEvent("idle", {duration_ms: idleDuration, path: window.location.pathname});
+            logEvent("idle", { duration_ms: idleDuration, path: window.location.pathname });
         }
         idleStart = null;
     }
-    idleTimeout = setTimeout(function() {
+    idleTimeout = setTimeout(function () {
         idleStart = Date.now();
     }, 60000); // 1 minute idle trigger
 }
@@ -168,8 +221,8 @@ function resetIdleTimer() {
 });
 resetIdleTimer();
 
-// JS ERROR LOGGING
-window.addEventListener("error", function(e) {
+// JS error logging
+window.addEventListener("error", function (e) {
     logEvent("js_error", {
         message: e.message,
         source: e.filename,
@@ -180,22 +233,32 @@ window.addEventListener("error", function(e) {
     });
 });
 
-// MODAL OPEN/CLOSE (for Bootstrap 5)
-document.addEventListener("shown.bs.modal", function(e) {
+// Bootstrap 5 modal open/close events with duration
+const modalOpenTimes = {};
+document.addEventListener("shown.bs.modal", function (e) {
+    modalOpenTimes[e.target.id] = Date.now();
     logEvent("modal_open", {
         modal_id: e.target.id,
         path: window.location.pathname
     });
 });
-document.addEventListener("hidden.bs.modal", function(e) {
+document.addEventListener("hidden.bs.modal", function (e) {
+    const modal_id = e.target.id;
+    const openTime = modalOpenTimes[modal_id];
+    let durationSec = null;
+    if (openTime) {
+        durationSec = ((Date.now() - openTime) / 1000).toFixed(3); // seconds
+    }
     logEvent("modal_close", {
-        modal_id: e.target.id,
-        path: window.location.pathname
+        modal_id: modal_id,
+        path: window.location.pathname,
+        duration_seconds: durationSec
     });
+    delete modalOpenTimes[modal_id];
 });
 
-// CUSTOM EVENTS (call window.logCustomEvent from anywhere)
-window.logCustomEvent = function(name, details={}) {
+// Custom event logger for anywhere in your app
+window.logCustomEvent = function(name, details = {}) {
     logEvent("custom_" + name, details);
 };
 </script>
