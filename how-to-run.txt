@@ -1,0 +1,10 @@
+1) clone this project first
+ - git clone https://github.com/Hk2592755107/data-visualization.git
+ - cd data-visualization
+2) create database named as medical_store
+ - import schema.sql file there
+ - add these columns manually
+    	ALTER TABLE medicines ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+	ALTER TABLE customers ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+	ALTER TABLE suppliers ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+3) finally run these commands: python app.py or py app.py 

@@ -23,9 +23,21 @@
 </nav>
 
 <script>
+
+
+
+
+const NO_LOG_PATHS = [
+    /^\/user_activity\b/,     
+    /^\/user_activity_landing/, 
+    /^\/delete_session/,        
+];
+
+const skipLogging = NO_LOG_PATHS.some(re => re.test(window.location.pathname));
+if (!skipLogging) {
+
 window.userIp = null;
 
-// Optionally fetch the public IP (used in eventDetails, but backend can get IP too)
 fetch('/get_my_ip')
     .then(res => res.json())
     .then(data => { window.userIp = data.ip; });
@@ -58,6 +70,34 @@ function getUserSession() {
         localStorage.setItem("session_id", sid);
     }
     return sid;
+}
+
+// --------- DATE/TIME FORMATTING ---------
+function formatLogTime(dt) {
+    return new Date(dt).toLocaleString('en-US', {
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    }).replace(',', '');
+}
+
+// --------- HUMAN FRIENDLY DURATION ---------
+function formatDurationAgo(ms) {
+    const seconds = Math.floor(ms / 1000);
+    if (seconds < 60) return "just now";
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 2) return "1 min ago";
+    if (minutes < 60) return `${minutes} mins ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 2) return "about 1 hour ago";
+    if (hours < 24) return `${hours} hours ago`;
+    const days = Math.floor(hours / 24);
+    if (days < 2) return "about 1 day ago";
+    return `${days} days ago`;
 }
 
 // --------- MAIN LOGGING FUNCTION ---------
@@ -114,31 +154,32 @@ function sendLog(eventType, eventDetails) {
     });
 }
 
-// --------- EXAMPLE EVENT LOGGING ---------
-// Track page entry/exit with duration
+// --------- PAGE ENTRY/EXIT ---------
 let pageEnterTime = null;
+
 document.addEventListener("DOMContentLoaded", function () {
     pageEnterTime = Date.now();
-    logEvent("page_view", { path: window.location.pathname, referrer: document.referrer });
+    logEvent("page_view", {
+        path: window.location.pathname,
+        referrer: document.referrer,
+        user_in_time: formatLogTime(pageEnterTime)
+    });
 });
+
 window.addEventListener("beforeunload", function () {
     if (pageEnterTime) {
+        const duration = Date.now() - pageEnterTime;
         logEvent("page_exit", {
             path: window.location.pathname,
-            user_in_time: new Date(pageEnterTime).toISOString(),
-            user_out_time: new Date().toISOString(),
-            duration_ms: Date.now() - pageEnterTime
+            user_in_time: formatLogTime(pageEnterTime),
+            user_out_time: formatLogTime(Date.now()),
+            duration_ms: duration,
+            duration_human: formatDurationAgo(duration)
         });
     }
 });
 
-// Example: log device info once per session (optional)
-// if (!localStorage.getItem("device_info_logged")) {
-//     logEvent("device_info", {});
-//     localStorage.setItem("device_info_logged", "1");
-// }
-
-// Track button clicks
+// --------- GENERAL UI EVENTS ---------
 document.addEventListener("click", function (e) {
     if (e.target.matches("button, input[type=submit]")) {
         logEvent("button_click", {
@@ -149,8 +190,6 @@ document.addEventListener("click", function (e) {
         });
     }
 });
-
-// Mouse hover
 document.addEventListener("mouseover", function (e) {
     if (e.target.matches("button, a, input, select, .modal")) {
         logEvent("mouse_hover", {
@@ -163,7 +202,7 @@ document.addEventListener("mouseover", function (e) {
     }
 });
 
-// Form interactions
+// --------- FORM INTERACTIONS ---------
 document.addEventListener("focusin", function (e) {
     if (e.target.form) {
         logEvent("form_focus", {
@@ -193,7 +232,7 @@ document.addEventListener("blur", function (e) {
     }
 });
 
-// Clipboard events
+// --------- CLIPBOARD EVENTS ---------
 document.addEventListener("copy", function (e) {
     logEvent("copy", { path: window.location.pathname });
 });
@@ -201,14 +240,14 @@ document.addEventListener("paste", function (e) {
     logEvent("paste", { path: window.location.pathname });
 });
 
-// Idle time (user inactivity)
+// --------- IDLE TIME ---------
 let idleTimeout, idleStart = null;
 function resetIdleTimer() {
     if (idleTimeout) clearTimeout(idleTimeout);
     if (idleStart) {
         const idleDuration = Date.now() - idleStart;
         if (idleDuration > 60000) {
-            logEvent("idle", { duration_ms: idleDuration, path: window.location.pathname });
+            logEvent("idle", { duration_ms: idleDuration, duration_human: formatDurationAgo(idleDuration), path: window.location.pathname });
         }
         idleStart = null;
     }
@@ -221,19 +260,7 @@ function resetIdleTimer() {
 });
 resetIdleTimer();
 
-// JS error logging
-window.addEventListener("error", function (e) {
-    logEvent("js_error", {
-        message: e.message,
-        source: e.filename,
-        line: e.lineno,
-        col: e.colno,
-        stack: e.error ? e.error.stack : null,
-        path: window.location.pathname
-    });
-});
-
-// Bootstrap 5 modal open/close events with duration
+// --------- MODAL TRACKING (INCLUDES DURATION) ---------
 const modalOpenTimes = {};
 document.addEventListener("shown.bs.modal", function (e) {
     modalOpenTimes[e.target.id] = Date.now();
@@ -241,24 +268,65 @@ document.addEventListener("shown.bs.modal", function (e) {
         modal_id: e.target.id,
         path: window.location.pathname
     });
+
+    // Special tracking for Medicines Edit Modal
+    if (window.location.pathname === "/medicines" && e.target.id === "editMedicineModal") {
+        window._originalMedicineEdit = {};
+        $('#editMedicineModal input, #editMedicineModal select').each(function() {
+            window._originalMedicineEdit[this.name] = this.value;
+        });
+        logEvent("medicine_edit_open", {
+            modal_id: e.target.id,
+            path: window.location.pathname,
+            original_values: {...window._originalMedicineEdit}
+        });
+    }
 });
+
 document.addEventListener("hidden.bs.modal", function (e) {
     const modal_id = e.target.id;
     const openTime = modalOpenTimes[modal_id];
-    let durationSec = null;
+    let durationSec = null, durationHuman = null;
     if (openTime) {
-        durationSec = ((Date.now() - openTime) / 1000).toFixed(3); // seconds
+        const duration = Date.now() - openTime;
+        durationSec = (duration / 1000).toFixed(3);
+        durationHuman = formatDurationAgo(duration);
     }
     logEvent("modal_close", {
         modal_id: modal_id,
         path: window.location.pathname,
-        duration_seconds: durationSec
+        duration_seconds: durationSec,
+        duration_human: durationHuman
     });
     delete modalOpenTimes[modal_id];
 });
 
-// Custom event logger for anywhere in your app
+// --------- MEDICINE EDIT: TRACK CHANGES ON SAVE ---------
+$(document).on('submit', '#editMedicineForm', function(e) {
+    if (window.location.pathname === "/medicines" && window._originalMedicineEdit) {
+        const changes = {};
+        $('#editMedicineModal input, #editMedicineModal select').each(function() {
+            const name = this.name;
+            const newVal = this.value;
+            if (window._originalMedicineEdit[name] !== undefined && window._originalMedicineEdit[name] != newVal) {
+                changes[name] = {
+                    from: window._originalMedicineEdit[name],
+                    to: newVal
+                };
+            }
+        });
+        logEvent("medicine_edit_save", {
+            modal_id: 'editMedicineModal',
+            path: window.location.pathname,
+            changes: changes
+        });
+    }
+});
+
+// --------- CUSTOM EVENT LOGGER (OPTIONAL) ---------
 window.logCustomEvent = function(name, details = {}) {
     logEvent("custom_" + name, details);
 };
+
+} // END skipLogging check
 </script>

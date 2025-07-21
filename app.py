@@ -27,30 +27,31 @@ def home():
 
 
 
+import requests
+
 @app.route('/log_event', methods=['POST'])
 def log_event():
     data = request.json
     ip = data.get('details', {}).get('ip') or request.remote_addr
 
-    # Only fetch geo info if not already present
-    if not all(k in data['details'] for k in ['country', 'region', 'city', 'timezone']):
-        try:
-            # Call ip-api.com to get location info
-            geo = requests.get(f"http://ip-api.com/json/{ip}?fields=status,country,regionName,city,timezone").json()
-            if geo.get("status") == "success":
-                data['details']['country']  = geo.get('country',    '-')
-                data['details']['region']   = geo.get('regionName', '-')
-                data['details']['city']     = geo.get('city',       '-')
-                data['details']['timezone'] = geo.get('timezone',   '-')
-            else:
-                data['details']['country'] = data['details']['region'] = data['details']['city'] = data['details']['timezone'] = '-'
-        except Exception as ex:
-            data['details']['country'] = data['details']['region'] = data['details']['city'] = data['details']['timezone'] = '-'
+    # # Only fetch geo info if not already present
+    # if not all(k in data['details'] for k in ['country', 'region', 'city', 'timezone']):
+    #     try:
+    #         geo = requests.get(f"http://ip-api.com/json/{ip}?fields=status,country,regionName,city,timezone").json()
+    #         if geo.get("status") == "success":
+    #             data['details']['country']  = geo.get('country',    '-')
+    #             data['details']['region']   = geo.get('regionName', '-')
+    #             data['details']['city']     = geo.get('city',       '-')
+    #             data['details']['timezone'] = geo.get('timezone',   '-')
+    #         else:
+    #             data['details']['country'] = data['details']['region'] = data['details']['city'] = data['details']['timezone'] = '-'
+    #     except Exception:
+    #         data['details']['country'] = data['details']['region'] = data['details']['city'] = data['details']['timezone'] = '-'
 
-    # Write to log file as before
     with open("user_activity_log.jsonl", "a") as f:
         f.write(json.dumps(data) + "\n")
     return '', 204
+
 
 
 
