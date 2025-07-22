@@ -302,26 +302,26 @@ document.addEventListener("hidden.bs.modal", function (e) {
 });
 
 // --------- MEDICINE EDIT: TRACK CHANGES ON SAVE ---------
-$(document).on('submit', '#editMedicineForm', function(e) {
-    if (window.location.pathname === "/medicines" && window._originalMedicineEdit) {
-        const changes = {};
-        $('#editMedicineModal input, #editMedicineModal select').each(function() {
-            const name = this.name;
-            const newVal = this.value;
-            if (window._originalMedicineEdit[name] !== undefined && window._originalMedicineEdit[name] != newVal) {
-                changes[name] = {
-                    from: window._originalMedicineEdit[name],
-                    to: newVal
-                };
-            }
-        });
-        logEvent("medicine_edit_save", {
-            modal_id: 'editMedicineModal',
-            path: window.location.pathname,
-            changes: changes
-        });
-    }
-});
+// $(document).on('submit', '#editMedicineForm', function(e) {
+//     if (window.location.pathname === "/medicines" && window._originalMedicineEdit) {
+//         const changes = {};
+//         $('#editMedicineModal input, #editMedicineModal select').each(function() {
+//             const name = this.name;
+//             const newVal = this.value;
+//             if (window._originalMedicineEdit[name] !== undefined && window._originalMedicineEdit[name] != newVal) {
+//                 changes[name] = {
+//                     from: window._originalMedicineEdit[name],
+//                     to: newVal
+//                 };
+//             }
+//         });
+//         logEvent("medicine_edit_save", {
+//             modal_id: 'editMedicineModal',
+//             path: window.location.pathname,
+//             changes: changes
+//         });
+//     }
+// });
 
 // --------- CUSTOM EVENT LOGGER (OPTIONAL) ---------
 window.logCustomEvent = function(name, details = {}) {

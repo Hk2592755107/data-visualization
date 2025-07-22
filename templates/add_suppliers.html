@@ -268,6 +268,7 @@
       $(document).ready(function () {
         // Only initialize ONCE:
         const table = $("#suppliersTable").DataTable({
+          pageLenght: 100,
           language: {
             emptyTable: "No suppliers found.",
           },
