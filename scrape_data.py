@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 
-async def scrape_all_suppliers():
+async dasync def scrape_all_suppliers():
     suppliers = []
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
